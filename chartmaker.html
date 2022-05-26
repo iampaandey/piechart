@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <body>
 
-<canvas id="myChart" style="width:100%;height :200px ;max-width:600px"></canvas>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
 <script>
+
 const placementdata =[
-  {
-    branch : "Cse",
-    package : "30"
-  },
-  {
-    branch : "electronics",
-    package : "20"
-  },
-  {
-    branch : "Civil",
-    package : "15"
-  },
-  {
-    branch : "mech",
-    package : "35"
-  },
-]
+    {
+      branch : "Cse",
+      package : "55"
+    },
+    {
+      branch : "electronics",
+      package : "49"
+    },
+    {
+      branch : "Civil",
+      package : "44"
+    },
+    {
+      branch : "mech",
+      package : "24"
+    },
+    {
+      branch : "electrical",
+      package : "15"
+    }
+  ]
+  
+  
+  const branch = placementdata.map(getbranch)
+  
+  function getbranch(item){
+    return [item.branch];
+  }
+  console.log(branch)
+  const package = placementdata.map(getpackage)
+  
+  function getpackage(item){
+    return [item.package];
+  }
+  console.log(package)
 
+  const result = package.map(function(x){
+       return parseInt(x,10);
+  })
 
-const branch = placementdata.map(getbranch)
+console.log(result);
 
-function getbranch(item){
-  return [item.branch];
-}
-console.log(branch)
-const package = placementdata.map(getpackage)
-
-function getpackage(item){
-  return [item.package];
-}
-console.log(package)
-//  const [branch,package]=placementdata.map((branch,package)=>
-//    console.log(branch,package)
-// )
-
-// var xValues = ["CSE", "ELECTRONICS", "CIVIL", "MECH", "ROHIT"];
-// var yValues = [55, 49, 44, 24, 2];
-var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
-];
+var barColors = ["red", "green","blue","orange","brown"];
 
 new Chart("myChart", {
-  type: "pie",
+  type: "bar",
   data: {
     labels: branch,
     datasets: [{
       backgroundColor: barColors,
-      data: package
+      data: result
     }]
   },
   options: {
+    legend: {display: false},
     title: {
       display: true,
       text: "IERT Placement Record 2022"
@@ -72,7 +73,6 @@ new Chart("myChart", {
 
 </body>
 </html>
-
 
 
 
